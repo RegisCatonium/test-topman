@@ -221,6 +221,7 @@ a.btn_start, button.btn_start {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  pointer-events: none;
 }
 .callback__placeholder span {
   color: #FF144F;
