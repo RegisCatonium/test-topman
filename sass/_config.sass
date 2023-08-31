@@ -1,0 +1,51 @@
+// USER VARIABLES SECTION
+$accent: #FF144F
+
+$textColor: #1C2A37
+$lightText: #9CA7B5
+$bgColor: #333
+
+$fontSize: 1.6rem // Body Font Size
+$fontText: geometria, sans-serif // User Font Family
+
+// FONTS LOAD SECTION
+
+@mixin font($fname, $fstyle, $fweight, $furl)
+	@font-face
+		font-family: $fname
+		font-style: $fstyle
+		font-weight: $fweight
+		src: url($furl) format('woff2')
+
+@include font('geometria', normal, 400, '../fonts/geometria/geometria.ttf')
+@include font('geometria', normal, 500, '../fonts/geometria/geometria-medium.ttf')
+@include font('geometria', normal, 700, '../fonts/geometria/geometria-bold.ttf')
+
+
+// GENERAL DOCUMENT STYLES
+*
+	box-sizing: border-box
+
+html, body
+	overflow-x: hidden
+html
+	font-size: 10px
+
+body
+	font-family: $fontText
+	font-size: $fontSize
+	color: $textColor
+	background-color: $bgColor
+	min-width: 32rem
+	position: relative
+
+a
+	color: #fff
+	text-decoration: none
+
+h1, h2, h3, h4, h5, p
+	margin: 0
+p
+	line-height: 1.5
+.no-scroll
+	overflow: hidden

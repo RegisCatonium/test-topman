@@ -1,0 +1,360 @@
+@font-face {
+  font-family: "geometria";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/geometria/geometria.ttf") format("woff2");
+}
+@font-face {
+  font-family: "geometria";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/geometria/geometria-medium.ttf") format("woff2");
+}
+@font-face {
+  font-family: "geometria";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/geometria/geometria-bold.ttf") format("woff2");
+}
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: geometria, sans-serif;
+  font-size: 1.6rem;
+  color: #1C2A37;
+  background-color: #333;
+  min-width: 32rem;
+  position: relative;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, p {
+  margin: 0;
+}
+
+p {
+  line-height: 1.5;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+a.btn, button.btn {
+  display: block;
+  padding: 1em 2.285em;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  background-color: #FF144F;
+  border: 1px solid #FF144F;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+a.btn:hover, button.btn:hover {
+  color: #FF144F;
+  background-color: transparent;
+}
+a.btn_start, button.btn_start {
+  display: block;
+  font-size: 3.2rem;
+}
+
+.modal {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-color: rgba(51, 51, 51, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.modal.show {
+  display: flex;
+}
+.modal__title {
+  font-size: 2.2em;
+  font-weight: 700;
+  margin-bottom: 1.364em;
+}
+.modal__close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4em;
+  height: 4em;
+  background-color: #EDF5FF;
+  border: none;
+  border-radius: 100%;
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  cursor: pointer;
+  transition: transform 0.25s linear, opacity 0.25s linear;
+}
+.modal__close img {
+  display: block;
+  width: 0.85em;
+  height: 0.85em;
+}
+.modal__close:hover {
+  transform: rotate(90deg);
+  opacity: 1;
+}
+.modal__close:focus {
+  outline: none;
+}
+.modal__content {
+  display: block;
+  padding: 5em 10.1em 6em 5em;
+  width: 89.5em;
+  font-size: 1rem;
+  background-color: #fff;
+  border-radius: 0.8rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: all 0.4s ease-in-out;
+}
+
+.callback {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 2rem;
+  width: 100%;
+  font-size: 1.6em;
+}
+.callback__title {
+  font-size: 1.6rem;
+}
+.callback__box {
+  width: 100%;
+  position: relative;
+}
+.callback__box_dropdown {
+  cursor: pointer;
+  position: relative;
+}
+.callback__box_dropdown::after {
+  content: "";
+  display: block;
+  width: 0.625em;
+  height: 0.625em;
+  background-image: url(../images/arrow.svg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: calc(50% - 0.3125em);
+  right: 1.25em;
+  z-index: 100;
+  transition: transform 0.3s ease-in-out;
+}
+.callback__box_dropdown.open .callback__menu {
+  opacity: 1;
+  z-index: 10;
+}
+.callback__box_dropdown.open::after {
+  transform: rotate(180deg);
+}
+.callback__box .callback__item {
+  z-index: 100;
+}
+.callback__item {
+  width: 100%;
+  padding: 1.25em;
+  background-color: #fff;
+  border: 1px solid #DEE2E8;
+  border-radius: 0.5em;
+  outline: none;
+  transition: all 0.2s linear;
+  position: relative;
+}
+.callback__item:focus {
+  border: 1px solid #000;
+}
+.callback__item:invalid + .callback__placeholder {
+  display: block;
+}
+.callback__item_textarea {
+  height: 7.5em;
+}
+.callback__placeholder {
+  display: none;
+  position: absolute;
+  line-height: 1;
+  top: 1.3em;
+  left: 1.25em;
+  z-index: 101;
+  cursor: text;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.callback__placeholder span {
+  color: #FF144F;
+}
+.callback__menu {
+  display: flex;
+  flex-direction: column;
+  align-content: start;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 12.5em;
+  margin: 0;
+  padding: 4.375em 0 0.9375em 1.25em;
+  list-style: none;
+  border-radius: 0.5em;
+  background-color: #fff;
+  box-shadow: 0 4px 1.875em 0 rgba(22, 60, 104, 0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+  cursor: auto;
+  overflow-x: auto;
+  transition: opacity 0.2s ease-in, z-index 0.2s ease-in;
+}
+.callback__menu li {
+  display: block;
+  margin-right: 1.5625em;
+  padding: 0.5em 0;
+  width: 10.3125em;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease-in;
+}
+.callback__menu li:hover {
+  color: #FF144F;
+}
+.callback__box-btn {
+  display: flex;
+  align-items: center;
+  gap: 1.25em;
+  margin-top: 0.625em;
+}
+.callback__text {
+  font-size: 0.75em;
+  color: #9CA7B5;
+}
+.callback__text a {
+  color: #1C2A37;
+}
+.callback__text a:hover {
+  cursor: pointer;
+  color: #FF144F;
+}
+
+@font-face {
+  font-family: "geometria";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/geometria/geometria.ttf") format("woff2");
+}
+@font-face {
+  font-family: "geometria";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/geometria/geometria-medium.ttf") format("woff2");
+}
+@font-face {
+  font-family: "geometria";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/geometria/geometria-bold.ttf") format("woff2");
+}
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: geometria, sans-serif;
+  font-size: 1.6rem;
+  color: #1C2A37;
+  background-color: #333;
+  min-width: 32rem;
+  position: relative;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, p {
+  margin: 0;
+}
+
+p {
+  line-height: 1.5;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 1600px) {
+  html {
+    font-size: 9px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html {
+    font-size: 8px;
+  }
+}
+@media only screen and (max-width: 1050px) {
+  html {
+    font-size: 7px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  html {
+    font-size: 6px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 4px;
+  }
+}/*# sourceMappingURL=main.css.map */
