@@ -108,6 +108,7 @@ a.btn, button.btn
 				position: absolute
 				top: calc(50% - 0.3125em)
 				right: 1.25em
+				transform: rotate(90deg)
 				z-index: 100
 				transition: transform .3s ease-in-out
 			&.open
@@ -115,7 +116,7 @@ a.btn, button.btn
 					opacity: 1
 					z-index: 10
 				&::after
-					transform: rotate(180deg)
+					transform: rotate(0deg)
 		& .callback__item
 			z-index: 100
 	&__item
